@@ -1,0 +1,39 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type RecordingId__608155988 = Nat;
+type Recording__309790270 =
+  {
+    audioBlobRef : Text;
+    createdAt : Timestamp__301639476;
+    var durationSeconds : Float;
+    id : RecordingId__608155988;
+    var language : Text;
+    owner : UserId__158757552;
+    var title : Text;
+    var transcript : Text;
+    var transcriptStatus : TranscriptStatus__96914227;
+    var updatedAt : Timestamp__301639476
+  };
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+type Timestamp__301639476 = Time__900049286;
+type TranscriptStatus__96914227 = {#complete; #error; #pending; #processing};
+type UserId__158757552 = Principal;
+actor {
+  stable idCounter : {var value : Nat};
+  stable recordings :
+    {
+      var root : Node__46230540<RecordingId__608155988, Recording__309790270>;
+      var size : Nat__490723111
+    }
+};

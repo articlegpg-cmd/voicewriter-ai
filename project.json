@@ -1,0 +1,28 @@
+{
+  "overview": "An AI-powered voice writer that records your speech, automatically transcribes it, and uses AI to remove filler words and organize the content into a clean, polished text — ready to copy or export. All UI is in Bengali, optimized for Android phones.",
+  "features": [
+    "Voice recording with start/pause/resume/stop controls",
+    "Live waveform animation and elapsed timer",
+    "AI transcription triggered automatically on stop",
+    "Smart AI cleanup removes filler words and organizes into polished paragraphs",
+    "Toggle between original and cleaned transcript",
+    "Editable transcript with character count",
+    "One-click copy to clipboard",
+    "Export as .txt file",
+    "Recording history with title, date, and duration",
+    "Rename and delete recordings",
+    "Bengali UI throughout",
+    "Mobile-first responsive design for Android"
+  ],
+  "category": "productivity",
+  "tags": [
+    "voice",
+    "ai",
+    "transcription",
+    "bengali",
+    "mobile",
+    "productivity",
+    "speech-to-text"
+  ],
+  "last_updated": "2026-04-16T09:05:44.564Z"
+}

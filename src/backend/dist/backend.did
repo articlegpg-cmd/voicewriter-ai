@@ -1,0 +1,82 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type UserId = principal;
+type UpdateTranscriptRequest = 
+ record {
+   id: RecordingId;
+   status: TranscriptStatus;
+   transcript: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type TranscriptStatus = 
+ variant {
+   complete;
+   error;
+   pending;
+   processing;
+ };
+type Timestamp = int;
+type RefineResult = record {refinedText: text;};
+type RefineRequest = 
+ record {
+   mode: RefineMode;
+   "text": text;
+ };
+type RefineMode = 
+ variant {
+   grammarFix;
+   removeFiller;
+   rewrite;
+   summarize;
+ };
+type RecordingInfo = 
+ record {
+   audioBlobRef: text;
+   createdAt: Timestamp;
+   durationSeconds: float64;
+   id: RecordingId;
+   language: text;
+   owner: UserId;
+   title: text;
+   transcript: text;
+   transcriptStatus: TranscriptStatus;
+   updatedAt: Timestamp;
+ };
+type RecordingId = nat;
+type CreateRecordingRequest = 
+ record {
+   audioBlobRef: text;
+   durationSeconds: float64;
+   language: text;
+   title: text;
+ };
+service : {
+  createRecording: (req: CreateRecordingRequest) -> (RecordingInfo);
+  deleteRecording: (id: RecordingId) -> (bool);
+  getRecording: (id: RecordingId) -> (opt RecordingInfo) query;
+  listRecordings: () -> (vec RecordingInfo) query;
+  refineText: (req: RefineRequest) -> (RefineResult);
+  transcribeRecording: (id: RecordingId) -> (bool);
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  updateRecordingTitle: (id: RecordingId, title: text) -> (bool);
+  updateTranscript: (req: UpdateTranscriptRequest) -> (bool);
+}
